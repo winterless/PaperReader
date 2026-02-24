@@ -26,8 +26,12 @@ Use with: `@inbox/md_converted/<paper>.md` and optionally `@papers/`
 
 4) 推荐落库动作
    - 建议目标路径：papers/<domain>/<year>_<paper_original_name>.md
+   - 对应 PDF 路径：papers/<domain>/<year>_<paper_original_name>.pdf
    - 建议 topic_tags（3-5 个）
-   - 建议执行命令：mkdir -p papers/<domain> && mv <source_md_path> papers/<domain>/<year>_<paper_original_name>.md
+   - 建议执行命令（同步归档 md + pdf）：
+     mkdir -p papers/<domain> && \
+     mv <source_md_path> papers/<domain>/<year>_<paper_original_name>.md && \
+     mv <source_pdf_path> papers/<domain>/<year>_<paper_original_name>.pdf
 
 5) 落库后标准化动作（一并给出）
    - Frontmatter（最小）：`paper_id`, `topic_tags`, `source_url`
@@ -39,6 +43,7 @@ Use with: `@inbox/md_converted/<paper>.md` and optionally `@papers/`
 - 若论文核心问题与现有领域都明显不匹配，才建议新增领域。
 - 若证据不足，必须明确输出“无法确定”。
 - 文件命名必须使用：`年份_论文原名`。
+- 归档必须同时迁移 `.md` 和对应 `.pdf` 到同一领域目录。
 - 本 prompt 输出需覆盖“判定到落库后的完整动作清单”，不遗漏 Frontmatter/渲染/My Notes。
 
 自归纳建域模式（当 papers 为空或样本不足）：

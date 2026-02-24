@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import csv
 import datetime as dt
 import re
 from collections import Counter
@@ -12,7 +11,6 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS_DIR = ROOT / "papers"
 DOCS_DIR = ROOT / "docs"
 TREE_MD = DOCS_DIR / "knowledge-tree.md"
-GROWTH_CSV = DOCS_DIR / "tree-growth-log.csv"
 
 
 def parse_list_value(raw: str) -> list[str]:
@@ -107,31 +105,6 @@ def ensure_topic_directories(papers: list[dict]) -> list[str]:
     return created
 
 
-def append_growth_snapshot(total_papers: int, total_topics: int, prereq_edges: int) -> None:
-    DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    file_exists = GROWTH_CSV.exists()
-    with GROWTH_CSV.open("a", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(["timestamp", "total_papers", "total_topics", "total_prereq_edges"])
-        writer.writerow(
-            [
-                dt.datetime.now().isoformat(timespec="seconds"),
-                total_papers,
-                total_topics,
-                prereq_edges,
-            ]
-        )
-
-
-def load_growth_rows(limit: int = 12) -> list[dict]:
-    if not GROWTH_CSV.exists():
-        return []
-    with GROWTH_CSV.open("r", encoding="utf-8", newline="") as f:
-        rows = list(csv.DictReader(f))
-    return rows[-limit:]
-
-
 def build_mermaid(papers: list[dict]) -> str:
     lines = ["graph TD"]
     topic_nodes: set[str] = set()
@@ -160,7 +133,7 @@ def build_mermaid(papers: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def write_tree_markdown(papers: list[dict], growth_rows: list[dict]) -> None:
+def write_tree_markdown(papers: list[dict]) -> None:
     topics = Counter()
     prereq_edges = 0
     for p in papers:
@@ -194,19 +167,8 @@ def write_tree_markdown(papers: list[dict], growth_rows: list[dict]) -> None:
             "```mermaid",
             build_mermaid(papers),
             "```",
-            "",
-            "## Growth Trend",
-            "",
-            "| Timestamp | Papers | Topics | Prereq Edges |",
-            "|---|---:|---:|---:|",
         ]
     )
-
-    for row in growth_rows:
-        lines.append(
-            f"| {row.get('timestamp','')} | {row.get('total_papers','')} | "
-            f"{row.get('total_topics','')} | {row.get('total_prereq_edges','')} |"
-        )
 
     TREE_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -217,20 +179,13 @@ def main() -> None:
     topics = {t for p in papers for t in p["topics"]}
     prereq_edges = sum(len(p["prerequisites"]) for p in papers)
 
-    append_growth_snapshot(
-        total_papers=len(papers),
-        total_topics=len(topics),
-        prereq_edges=prereq_edges,
-    )
-    growth_rows = load_growth_rows()
-    write_tree_markdown(papers, growth_rows)
+    write_tree_markdown(papers)
 
     print(f"rendered: {TREE_MD}")
     print(f"papers={len(papers)} topics={len(topics)} prereq_edges={prereq_edges}")
     print(f"topic_dirs_created={len(created_topic_dirs)}")
     if created_topic_dirs:
         print("created_dirs: " + ", ".join(created_topic_dirs))
-    print(f"growth_log: {GROWTH_CSV}")
 
 
 if __name__ == "__main__":

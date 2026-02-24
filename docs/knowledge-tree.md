@@ -1,6 +1,6 @@
 # Knowledge Tree
 
-Updated at: `2026-02-24T16:58:34`
+Updated at: `2026-02-24T17:07:13`
 
 ## Snapshot
 
@@ -22,12 +22,3 @@ graph TD
   T_agent["agent"]
   T_agent --> P_2022_react
 ```
-
-## Growth Trend
-
-| Timestamp | Papers | Topics | Prereq Edges |
-|---|---:|---:|---:|
-| 2026-02-24T15:29:28 | 0 | 0 | 0 |
-| 2026-02-24T16:10:03 | 0 | 0 | 0 |
-| 2026-02-24T16:18:24 | 0 | 0 | 0 |
-| 2026-02-24T16:58:34 | 1 | 1 | 0 |
