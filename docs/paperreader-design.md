@@ -42,12 +42,11 @@ TODO.md
 
 ## 3) 入库流程（每天可执行）
 
-1. `[用户]` 把 PDF 放到 `inbox/pdf_raw/`
-2. `[用户/Cursor]` 用外部工具（MinerU/Marker/Docling）转成 Markdown 到 `inbox/md_converted/`
-3. `[用户]` 快速抽检：标题层级、关键公式、结论段是否可读
-4. `[用户]` 合格稿移动到 `papers/<domain>/<paper_id>.md`
-5. `[用户+Cursor]` 在 Cursor 里提问并产出 5 行笔记（用户提问，Cursor总结）
-6. `[用户+Cursor]` 把 5 行笔记直接追加到该论文文件末尾的 `## My Notes`（只在 `papers/` 层做，不在 `inbox/` 写）
+1. `[用户]` 放入原始 PDF 到 `inbox/pdf_raw/`
+2. `[用户]` 使用 `00_conversion_and_qc.md` 一次完成“PDF->Markdown 转换 + 质检 + 可入库文件确认”
+3. `[用户]` 使用 `01_single_paper_deep_read.md` 发起精读
+4. `[Cursor]` 输出结构化回答（结论、依据、下一步阅读）
+5. `[用户]` 使用 `02_domain_routing_and_bootstrap.md` 一次性完成“领域判定 + 目标路径确定 + 文件移动 + Frontmatter补全 + 知识树渲染 + My Notes落盘”（必要时新建领域目录；命名规则：`年份_论文原名`）
 
 ---
 
@@ -64,6 +63,13 @@ source_url: https://arxiv.org/abs/xxxx.xxxxx
 ```
 
 可选增强（有余力再加）：`prerequisites`, `related`, `capability_tags`。
+
+领域统一规则（防别名）：
+
+- 领域主归属只由目录决定：`papers/<domain>/<paper>.md`。
+- `topic_tags` 作为检索辅助标签，不作为知识树主干分组依据。
+- 若目录名与 `topic_tags` 含义冲突，以目录名为准。
+- 渲染器会把 `topic_tags` 规范化为 `snake_case`，并在 `papers/` 下自动补齐同名目录（允许为空）。
 
 ---
 
@@ -139,3 +145,19 @@ source_url: https://arxiv.org/abs/xxxx.xxxxx
 - 你已经稳定执行日/周学习节奏
 
 升级项已放在 `TODO.md`，先记录，不提前实现。
+
+---
+
+## 10) 知识树生成 SOP（轻量版）
+
+1. `[用户]` 在每次新增或移动论文到 `papers/` 后执行：
+   - `python scripts/render_knowledge_tree.py`
+2. `[Cursor]` 从 `papers/**/*.md` 读取信息：
+   - 目录名（领域主归属，唯一真源）
+   - `topic_tags`（辅助标签；规范化后用于补齐目录）
+   - `prerequisites`（前置关系，可选）
+3. `[Cursor]` 生成两个输出文件：
+   - `docs/knowledge-tree.md`（当前树 + Mermaid 图）
+   - `docs/tree-growth-log.csv`（增长快照）
+4. `[用户]` 若 `papers/` 为空，看到 `0 papers` 属于正常现象。
+5. `[用户]` 为避免别名问题，领域变更应通过“移动文件到目标目录”完成。
