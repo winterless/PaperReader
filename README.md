@@ -21,3 +21,8 @@
 2. 把合格 Markdown 移入 `papers/<domain>/`
 3. 在 Cursor 中用 `@papers/...` 或 `@papers/<domain>/` 提问
 4. 参考 `playbooks/prompts/` 的模板进行精读、综述和学习路径规划
+
+## 知识树渲染
+
+- 渲染当前知识树：`python scripts/render_knowledge_tree.py`
+- 查看结果：`docs/knowledge-tree.md`
