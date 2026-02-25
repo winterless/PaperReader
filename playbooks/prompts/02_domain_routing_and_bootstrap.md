@@ -43,7 +43,7 @@ Use with: `@inbox/md_converted/<paper>.md` and optionally `@papers/`
 - 若论文核心问题与现有领域都明显不匹配，才建议新增领域。
 - 若证据不足，必须明确输出“无法确定”。
 - 文件命名必须使用：`年份_论文原名`。
-- 归档必须同时迁移 `.md` 和对应 `.pdf` 到同一领域目录。
+- 需要归档，归档必须同时迁移 `.md` 和对应 `.pdf` 到同一领域目录。
 - 本 prompt 输出需覆盖“判定到落库后的完整动作清单”，不遗漏 Frontmatter/渲染/My Notes。
 
 自归纳建域模式（当 papers 为空或样本不足）：

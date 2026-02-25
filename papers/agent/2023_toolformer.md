@@ -1,3 +1,9 @@
+---
+paper_id: 2023_toolformer
+topic_tags: [llm_agent, tool_use, self_supervised_learning, api_calling, zero_shot]
+source_url: https://arxiv.org/abs/2302.04761
+---
+
 ## Toolformer: Language Models Can Teach Themselves to Use Tools
 
 ## Timo Schick Jane Dwivedi-Yu Roberto Dessì † Roberta Raileanu Maria Lomeli Luke Zettlemoyer Nicola Cancedda Thomas Scialom
@@ -554,3 +560,11 @@ to answer a question based on the following paragraph: x Now answer the followin
 ## D DATESET
 
 DATESET is created by first randomly selecting 500 'current dates'. For each current date, another relatively past/future date is randomly selected within a four-year range, and the two dates are used to fill the query templates in Table 11. An example of one such query using the first template would be, 'How many days ago was August 14, 2020?' If called, the Calendar tool would return the presumed current date (e.g., 'Today is Sunday, November 20, 2020').
+
+## My Notes
+
+-
+-
+-
+-
+-
