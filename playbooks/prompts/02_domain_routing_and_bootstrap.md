@@ -27,11 +27,13 @@ Use with: `@inbox/md_converted/<paper>.md` and optionally `@papers/`
 4) 推荐落库动作
    - 建议目标路径：papers/<domain>/<year>_<paper_original_name>.md
    - 对应 PDF 路径：papers/<domain>/<year>_<paper_original_name>.pdf
+   - 对应评论路径（若有）：papers/<domain>/<year>_<paper_original_name>_comment.md（源文件为 inbox/md_converted/<paper_stem>_comment.md）
    - 建议 topic_tags（3-5 个）
-   - 建议执行命令（同步归档 md + pdf）：
+   - 建议执行命令（同步归档 md + pdf + comment，comment 若存在则一并移动）：
      mkdir -p papers/<domain> && \
      mv <source_md_path> papers/<domain>/<year>_<paper_original_name>.md && \
-     mv <source_pdf_path> papers/<domain>/<year>_<paper_original_name>.pdf
+     mv <source_pdf_path> papers/<domain>/<year>_<paper_original_name>.pdf && \
+     (test -f <source_comment_path> && mv <source_comment_path> papers/<domain>/<year>_<paper_original_name>_comment.md || true)
 
 5) 落库后标准化动作（一并给出）
    - Frontmatter（最小）：`paper_id`, `topic_tags`, `source_url`
@@ -43,10 +45,12 @@ Use with: `@inbox/md_converted/<paper>.md` and optionally `@papers/`
 - 若论文核心问题与现有领域都明显不匹配，才建议新增领域。
 - 若证据不足，必须明确输出“无法确定”。
 - 文件命名必须使用：`年份_论文原名`。
-- 需要归档，归档必须同时迁移 `.md` 和对应 `.pdf` 到同一领域目录。
+- 需要归档，归档必须同时迁移 `.md` 和对应 `.pdf` 到同一领域目录；若存在同名的 `_comment.md`（在 inbox/md_converted/），一并迁移。
 - 本 prompt 输出需覆盖“判定到落库后的完整动作清单”，不遗漏 Frontmatter/渲染/My Notes。
 
 自归纳建域模式（当 papers 为空或样本不足）：
 - 仅基于待判定论文内容，先给出“临时领域名”和“边界定义”。
 - 说明这是临时归档，后续出现 3+ 同类论文再确认是否固化为正式领域。
+
+帮我完成推荐落库动作和标准化动作，务必完成相应的文档搬运工作
 ```

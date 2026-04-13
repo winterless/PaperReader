@@ -1,26 +1,73 @@
-# Knowledge Tree
-
-Updated at: `2026-03-19T11:50:29`
-
-## Snapshot
-
-- Total papers: **22**
-- Total topics: **5**
-- Prerequisite edges: **0**
-
-## Topic Coverage
-
-| Topic | Paper Count |
-|---|---:|
-| agent | 8 |
-| alignment | 5 |
-| adaptive_pretraining | 3 |
-| foundation | 3 |
-| training_infra | 3 |
-
-## Tree Graph
-
-```mermaid
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Tree</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f1117;
+      --fg: #e6e8ee;
+      --card: #171a23;
+      --muted: #9aa3b2;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f9fc;
+        --fg: #1e2430;
+        --card: #ffffff;
+        --muted: #5f6b7d;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .header {
+      margin-bottom: 16px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .badge {
+      background: var(--card);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .panel {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h1>Knowledge Tree</h1>
+      <div class="meta">
+        <span class="badge">Updated: 2026-03-19T11:50:29</span>
+        <span class="badge">Papers: 22</span>
+        <span class="badge">Topics: 5</span>
+        <span class="badge">Prerequisite edges: 0</span>
+      </div>
+    </div>
+    <div class="panel">
+      <pre class="mermaid">
 graph LR
   P_2020_dont_stop_pretraining["2020_dont_stop_pretraining"]
   T_adaptive_pretraining["adaptive_pretraining"]
@@ -71,4 +118,17 @@ graph LR
   T_training_infra --> P_2020_zero
   P_training_infra__deepseek_v3_technical_report_2024["training_infra__deepseek_v3_technical_report_2024"]
   T_training_infra --> P_training_infra__deepseek_v3_technical_report_2024
-```
+      </pre>
+    </div>
+  </div>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "default",
+      flowchart: { curve: "basis" },
+      securityLevel: "loose"
+    });
+  </script>
+</body>
+</html>

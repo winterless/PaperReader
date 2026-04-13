@@ -1,3 +1,9 @@
+---
+paper_id: 2023_alignment__dpo_2023
+topic_tags: [alignment, preference_optimization, dpo, rlhf, llm_finetuning]
+source_url: https://arxiv.org/abs/2305.18290
+---
+
 ## Direct Preference Optimization:
 
 ## Your Language Model is Secretly a Reward Model

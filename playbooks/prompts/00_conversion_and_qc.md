@@ -6,12 +6,12 @@ Use with: `@inbox/pdf_raw/` or `@inbox/pdf_raw/<file>.pdf`
 任务边界（必须遵守）：
 - 只做 PDF->Markdown 转换和基础质量抽检。
 - 不做领域归档决策（不判断放哪个目录）。
-- 若需要归档，请改用 `02_domain_routing_and_bootstrap.md`。
 
 请完成以下动作：
 1) 将指定 PDF 转换到 `inbox/md_converted/`
 2) 对转换结果做快速抽检（至少覆盖以下项）：
    - 标题层级是否完整（H1/H2/H3 是否可读）
+   - 正文词间是否有空格（若整段/整页英文词连在一起无空格，属常见 PDF 提取问题，标为待修复）
    - 关键公式是否可读
    - 结论段是否可读
 

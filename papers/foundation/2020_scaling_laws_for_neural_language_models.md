@@ -1,3 +1,9 @@
+---
+paper_id: 2020_scaling_laws_for_neural_language_models
+topic_tags: [foundation, scaling_laws, language_modeling, compute_efficiency, power_law]
+source_url: ""
+---
+
 ## Scaling Laws for Neural Language Models
 
 ## Jared Kaplan ∗
@@ -871,3 +877,10 @@ Figure 24 We show evaluations on a series of datasets for models with approximat
 - [ZK16] Sergey Zagoruyko and Nikos Komodakis. Wide residual networks. Procedings of the British Machine Vision Conference 2016 , 2016. doi:10.5244/c.30.87. 18
 - [ZKZ + 15] Yukun Zhu, Ryan Kiros, Rich Zemel, Ruslan Salakhutdinov, Raquel Urtasun, Antonio Torralba, and Sanja Fidler. Aligning books and movies: Towards story-like visual explanations by watching movies and reading books. 2015 IEEE International Conference on Computer Vision (ICCV) , Dec 2015. doi:10.1109/iccv.2015.11. 7
 - [ZLN + 19] Guodong Zhang, Lala Li, Zachary Nado, James Martens, Sushant Sachdeva, George E. Dahl, Christopher J. Shallue, and Roger B. Grosse. Which algorithmic choices matter at which batch sizes? insights from a noisy quadratic model. CoRR , abs/1907.04164, 2019, 1907.04164. URL http://arxiv.org/abs/1907.04164 . 12, 18
+
+## My Notes
+- Key claim:
+- Evidence snippet:
+- What surprised me:
+- Repro/implementation idea:
+- Follow-up question:

@@ -1,3 +1,9 @@
+---
+paper_id: 2020_dont_stop_pretraining
+topic_tags: [adaptive_pretraining, domain_adaptive_pretraining, task_adaptive_pretraining, continued_pretraining, data_selection]
+source_url: https://github.com/allenai/dont-stop-pretraining
+---
+
 ## Don't Stop Pretraining: Adapt Language Models to Domains and Tasks
 
 Suchin Gururangan † Ana Marasovi´ c †♦ Swabha Swayamdipta † Kyle Lo † Iz Beltagy † Doug Downey † Noah A. Smith †♦
@@ -594,3 +600,11 @@ Table 21: 5 nearest neighbors of sentences from the RCT dataset (Source) in the 
 |                                  | Assent was obtained from children and adolescents aged 7-17 years.                                                                                                                                                                                                                      |
 | Neighbor 3                       | Cardiopulmonary resuscitation was not applied to children aged ¡5 years (Table 2).                                                                                                                                                                                                      |
 | Neighbor 4                       | It measures HRQoL in children and adolescents aged 2 to 25 years.                                                                                                                                                                                                                       |
+
+## My Notes
+
+- Core question:
+- Main method (DAPT/TAPT/etc.):
+- Key empirical finding:
+- Reproducibility hook:
+- Open question for follow-up:

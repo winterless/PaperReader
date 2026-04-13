@@ -1,3 +1,9 @@
+---
+paper_id: 2019_megatron_lm
+topic_tags: [training_infra, model_parallelism, distributed_training, transformer, megatron]
+source_url: "https://arxiv.org/abs/1909.08053"
+---
+
 ## Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism
 
 Mohammad Shoeybi 1 2 Mostofa Patwary 1 2 Raul Puri 1 2 Patrick LeGresley 2 Jared Casper 2 Bryan Catanzaro 2
@@ -461,3 +467,11 @@ We must also make one further transformer-specific modification to the perplexit
 ## E.2. LAMBADA Cloze Accuracy
 
 The capability to handle long term contexts is crucial for state of the art language models and is a necessary prerequisite for problems like long-form generation and documentbased question answering. Cloze-style datasets like LAMBADA are designed to measure a model's ability to operate in and reason about these types of long term contexts. Clozestyle reading comprehension uses a context of word tokens x = x 1: t with one token x j masked; the models objective is to correctly predict the value of the missing j th token. To accurately predict the missing token, the model requires an in-depth understanding of the surrounding context and how language should be used in such a context. LAMBADA uses cloze-style reading comprehension to test generative left-to-right language models by constructing examples of 45 sentences where the last word in the context x t is masked. Our models utilize subword units, so for LAMBADA evaluation we utilize the raw, unprocessed LAMBADA dataset and require that our model predict the multiple subword tokens that make up the word token. We use teacher forcing, and consider an answer correct only when all output predictions are correct. This formulation is equivalent to the original task of word token prediction.
+
+## My Notes
+
+- 归档自 inbox（domain routing 落库）。
+- 核心：层内模型并行，MLP/attention 列行拆分 + 少量 all-reduce；8.3B/512 GPU，76% 扩展效率。
+- 与 ZeRO 同属 training_infra：先 MP 破单卡显存，再 DP 扩 batch。
+- 后续阅读：Scaling Laws → Chinchilla（compute-optimal 配比）。
+- 
